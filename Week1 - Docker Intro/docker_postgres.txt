@@ -1,0 +1,16 @@
+Run this in terminal to build a postgresql database in docker container
+
+docker run -it \
+    -e POSTGRES_USER="root" \
+    -e POSTGRES_PASSWORD="root" \
+    -e POSTGRES_DB=ny_taxi \
+    -v $(pwd)/ny_taxi_postgres_data:/var/lib/postgresql/data \
+    -p 5432:5432 \
+postgres:13
+
+Once running, open a new terminal and install pgcli
+Run: pgcli -h localhost -p 5432 -U root -d ny_taxi
+to connect to database
+
+Download data (just one month) by: wget https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet
+Data dictionary: https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf
